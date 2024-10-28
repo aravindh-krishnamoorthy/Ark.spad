@@ -1,15 +1,26 @@
 ++
+++ Identity matrix
+++
+eye(n) == diagonalMatrix [1 for i in 1..n]
+eye(m,n) == eye(max(m,n))(1..m,1..n)
+
+++
+++ Zeros matrix
+++
+zeros(m,n) == matrix [[0 for j in 1..n] for i in 1..m]
+
+++
+++ Ones matrix
+++
+ones(m,n) == matrix [[1 for j in 1..n] for i in 1..m]
+
+++
 ++ Conjugate transpose
 ++
 ctranspose(X) ==
     _Y := transpose(X)
     for n in rowSlice(_Y) repeat for m in colSlice(_Y) repeat _Y(m,n) := conjugate(_Y(m,n))
     _Y
-
-++
-++ Identity matrix
-++
-eye(n) == diagonalMatrix [1 for i in 1..n]
 
 ++
 ++ Singular values
