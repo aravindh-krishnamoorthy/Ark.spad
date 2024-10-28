@@ -2,9 +2,9 @@
 ++ Conjugate transpose
 ++
 ctranspose(X) ==
-    Y := transpose(X)
-    for n in rowSlice(Y) repeat for m in colSlice(Y) repeat Y(m,n) := conjugate(Y(m,n))
-    Y
+    _Y := transpose(X)
+    for n in rowSlice(_Y) repeat for m in colSlice(_Y) repeat _Y(m,n) := conjugate(_Y(m,n))
+    _Y
 
 ++
 ++ Identity matrix
@@ -15,7 +15,7 @@ eye(n) == diagonalMatrix [1 for i in 1..n]
 ++ Singular values
 ++
 singularvalues(X) ==
-    s := []
-    e := solve(X*ctranspose(X) - s*eye(#X),s)
-    for i in 1..#e repeat s := append(s, sqrt(e(i)))
-    s
+    _sv := []
+    _e := solve(X*ctranspose(X) - _s*eye(nrows(X)),_s)
+    for _i in 1..#_e repeat _sv := append(_sv, sqrt(_e(_i)))
+    _sv
