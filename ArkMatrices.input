@@ -1,6 +1,7 @@
 ctranspose(X) ==
-    for n in rowSlice(X) repeat for m in colSlice(X) repeat X(m,n) := conjugate(X(m,n))
-    transpose(X)
+    Y := transpose(X)
+    for n in rowSlice(Y) repeat for m in colSlice(Y) repeat Y(m,n) := conjugate(Y(m,n))
+    Y
 
 singularvalues(X) == true
 
