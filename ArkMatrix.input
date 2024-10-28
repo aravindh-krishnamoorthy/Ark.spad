@@ -16,6 +16,6 @@ eye(n) == diagonalMatrix [1 for i in 1..n]
 ++
 singularvalues(X) ==
     _sv := []
-    _e := solve(determinant(X*ctranspose(X) - _s*eye(nrows(X))),_s)
+    _e := solve(determinant(X*ctranspose(X) - _s*eye(nrows(X))), _s)
     for _i in 1..#_e repeat _sv := cons(sqrt(rhs(_e(_i))), _sv)
     _sv
