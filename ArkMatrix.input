@@ -14,4 +14,8 @@ eye(n) == diagonalMatrix [1 for i in 1..n]
 ++
 ++ Singular values
 ++
-singularvalues(X) == true
+singularvalues(X) ==
+    s := []
+    e := solve(X*ctranspose(X) - s*eye(n),s)
+    for i in 1..#e repeat s := append(s, sqrt(e(i)))
+    s
