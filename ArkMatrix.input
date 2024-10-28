@@ -1,7 +1,17 @@
+++
+++ Conjugate transpose
+++
 ctranspose(X) ==
     Y := transpose(X)
     for n in rowSlice(Y) repeat for m in colSlice(Y) repeat Y(m,n) := conjugate(Y(m,n))
     Y
 
-singularvalues(X) == true
+++
+++ Identity matrix
+++
+eye(n) == diagonalMatrix [1 for i in 1..n]
 
+++
+++ Singular values
+++
+singularvalues(X) == true
