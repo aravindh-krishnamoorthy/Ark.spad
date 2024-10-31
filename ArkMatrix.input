@@ -7,26 +7,29 @@ eye(m,n) == eye(max(m,n))(1..m,1..n)
 ++
 ++ Zeros matrix
 ++
-zeros(m,n) == matrix [[0 for j in 1..n] for i in 1..m]
+zeros(n) == matrix [[0 for j in 1..n] for i in 1..n]
+zeros(m,n) == zeros(max(m,n))(1..m,1..n)
 
 ++
 ++ Ones matrix
 ++
-ones(m,n) == matrix [[1 for j in 1..n] for i in 1..m]
+ones(n) == matrix [[1 for j in 1..n] for i in 1..n]
+ones(m,n) == ones(max(m,n))(1..m,1..n)
 
 ++
 ++ Conjugate transpose
 ++
 ctranspose(X) ==
-    _Y := transpose(X)
-    for n in rowSlice(_Y) repeat for m in colSlice(_Y) repeat _Y(m,n) := conjugate(_Y(m,n))
+    _Y := copy(X)
+    for n in rowSlice(_Y) repeat for m in colSlice(_Y) repeat _Y(n,m) := conjugate(_Y(m,n))
     _Y
 
 ++
 ++ Singular values
 ++
-singularvalues(X) ==
-    _sv := []
-    _e := solve(determinant(X*ctranspose(X) - _s*eye(nrows(X))), _s)
-    for _i in 1..#_e repeat _sv := cons(sqrt(rhs(_e(_i))), _sv)
-    _sv
+svdvals(X) == map(sqrt, zerosOf(determinant(X*ctranspose(X) - _e*eye(nrows(X))), _e))
+
+++
+++ Eigenvalues
+++
+eigvals(X) == zerosOf(determinant(X - _e*eye(nrows(X))), _e)
